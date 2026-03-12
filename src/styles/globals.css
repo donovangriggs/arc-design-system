@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "@arctech/tokens/css/tokens.css";
+@import "@arctech/tokens/css/tokens-dark.css";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --color-primary-50: var(--arc-color-primary-50);
+  --color-primary-100: var(--arc-color-primary-100);
+  --color-primary-200: var(--arc-color-primary-200);
+  --color-primary-300: var(--arc-color-primary-300);
+  --color-primary-400: var(--arc-color-primary-400);
+  --color-primary-500: var(--arc-color-primary-500);
+  --color-primary-600: var(--arc-color-primary-600);
+  --color-primary-700: var(--arc-color-primary-700);
+  --color-primary-800: var(--arc-color-primary-800);
+  --color-primary-900: var(--arc-color-primary-900);
+
+  --color-secondary-50: var(--arc-color-secondary-50);
+  --color-secondary-100: var(--arc-color-secondary-100);
+  --color-secondary-200: var(--arc-color-secondary-200);
+  --color-secondary-300: var(--arc-color-secondary-300);
+  --color-secondary-400: var(--arc-color-secondary-400);
+  --color-secondary-500: var(--arc-color-secondary-500);
+  --color-secondary-600: var(--arc-color-secondary-600);
+  --color-secondary-700: var(--arc-color-secondary-700);
+  --color-secondary-800: var(--arc-color-secondary-800);
+  --color-secondary-900: var(--arc-color-secondary-900);
+
+  --color-neutral-0: var(--arc-color-neutral-0);
+  --color-neutral-50: var(--arc-color-neutral-50);
+  --color-neutral-100: var(--arc-color-neutral-100);
+  --color-neutral-200: var(--arc-color-neutral-200);
+  --color-neutral-300: var(--arc-color-neutral-300);
+  --color-neutral-400: var(--arc-color-neutral-400);
+  --color-neutral-500: var(--arc-color-neutral-500);
+  --color-neutral-600: var(--arc-color-neutral-600);
+  --color-neutral-700: var(--arc-color-neutral-700);
+  --color-neutral-800: var(--arc-color-neutral-800);
+  --color-neutral-900: var(--arc-color-neutral-900);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--arc-font-family-sans);
+  background: var(--arc-color-neutral-0);
+  color: var(--arc-color-neutral-900);
+  margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--arc-color-neutral-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--arc-color-neutral-300);
+  border-radius: 4px;
+}
+
+/* Code blocks from shiki */
+pre.shiki {
+  margin: 0;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Preview grid pattern */
+.preview-grid {
+  background-image: radial-gradient(circle, var(--arc-color-neutral-200) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+/* Sidebar responsive */
+.sidebar-container {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-container {
+    display: none;
+  }
+}

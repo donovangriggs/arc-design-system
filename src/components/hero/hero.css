@@ -1,0 +1,80 @@
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Light mode overrides */
+[data-theme="light"] .hero-section {
+  background: #f8f6ff;
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .hero-bg-gradient {
+  background: linear-gradient(to bottom right, rgba(243,232,255,0.8), #f8f6ff, rgba(204,251,241,0.5)) !important;
+}
+
+[data-theme="light"] .hero-glow-purple {
+  background: radial-gradient(circle at 30% 20%, rgba(124,58,237,0.08), transparent 50%) !important;
+}
+
+[data-theme="light"] .hero-glow-teal {
+  background: radial-gradient(circle at 70% 80%, rgba(20,184,166,0.08), transparent 50%) !important;
+}
+
+[data-theme="light"] .hero-orb-purple {
+  background: rgba(168,85,247,0.08) !important;
+}
+
+[data-theme="light"] .hero-orb-teal {
+  background: rgba(20,184,166,0.08) !important;
+}
+
+[data-theme="light"] .hero-subtitle {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .hero-badge {
+  border-color: rgba(124,58,237,0.2) !important;
+  background: rgba(243,232,255,0.8) !important;
+}
+
+[data-theme="light"] .hero-badge-icon {
+  color: #7c3aed !important;
+}
+
+[data-theme="light"] .hero-badge-text {
+  color: #6d28d9 !important;
+}
+
+[data-theme="light"] .hero-cta-secondary {
+  border-color: rgba(124,58,237,0.2) !important;
+  color: #1a1a2e !important;
+  background: white !important;
+}
+
+[data-theme="light"] .hero-status-bar {
+  border-color: rgba(124,58,237,0.1) !important;
+  background: rgba(255,255,255,0.8) !important;
+}
+
+[data-theme="light"] .hero-status-divider {
+  background: rgba(124,58,237,0.1) !important;
+}
+
+[data-theme="light"] .hero-status-text {
+  color: #64748b !important;
+}
