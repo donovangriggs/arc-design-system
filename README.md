@@ -17,7 +17,7 @@ This is a **static React + Vite site** that demonstrates 10 Arc components acros
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 22+ (see `.nvmrc` for pinned version)
 - pnpm (or npm/yarn)
 
 ### Installation
@@ -41,6 +41,9 @@ The site will be available at `http://localhost:5173`
 | `dev` | `vite` | Start Vite development server with hot module reloading |
 | `build` | `tsc -b && vite build` | Type-check with TypeScript and build for production |
 | `preview` | `vite preview` | Preview the production build locally |
+| `test` | `vitest run` | Run unit and integration tests once |
+| `test:watch` | `vitest` | Run tests in watch mode with auto-reload |
+| `test:coverage` | `vitest run --coverage` | Generate test coverage report (HTML and LCOV) |
 
 <!-- END AUTO-GENERATED Scripts Table -->
 
@@ -95,7 +98,12 @@ src/
 - **Framer Motion 12** - Smooth animations
 - **lucide-react** - Icon library
 
-### Development
+### Security & Content
+- **DOMPurify** - Sanitize HTML content for safe rendering
+
+### Development & Testing
+- **Vitest 4** - Unit testing framework with coverage
+- **React Testing Library** - Component testing utilities
 - **Syntax Highlighting** - Shiki for code blocks
 - **React Plugin for Vite** - Fast refresh and JSX transformation
 
@@ -110,6 +118,43 @@ The project uses a two-step build process:
 pnpm run build
 # Output: dist/ directory with production-ready files
 ```
+
+## Testing
+
+The project includes comprehensive test coverage with **Vitest**:
+
+### Running Tests
+
+```bash
+# Run tests once
+pnpm run test
+
+# Run tests in watch mode
+pnpm run test:watch
+
+# Generate coverage report
+pnpm run test:coverage
+# Coverage reports: coverage/index.html (HTML), coverage/lcov.info (LCOV format)
+```
+
+### Test Structure
+
+- **Unit Tests** - Component logic, hooks, utilities
+- **Integration Tests** - Testing component interactions and data flow
+- **Setup** - `src/test/setup.tsx` configures Vitest with:
+  - React Testing Library
+  - Mocked external dependencies (framer-motion, shiki, lucide-react)
+  - jsdom environment for DOM testing
+
+### Coverage Requirements
+
+Minimum coverage threshold: **80%**
+- Branches: 80%
+- Functions: 80%
+- Lines: 80%
+- Statements: 80%
+
+View detailed coverage report after running `pnpm run test:coverage`.
 
 ## Development
 
