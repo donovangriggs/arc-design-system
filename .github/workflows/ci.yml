@@ -50,11 +50,11 @@ jobs:
           key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-store-${{ runner.os }}-
 
-      - name: Install sibling package dependencies
+      - name: Build sibling packages (Turborepo workspace)
         working-directory: ../megastorybook
         run: |
-          cd packages/tokens && npm install --ignore-scripts && npm run build 2>/dev/null || true
-          cd ../core && npm install --ignore-scripts && npm run build 2>/dev/null || true
+          pnpm install --frozen-lockfile
+          pnpm build
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

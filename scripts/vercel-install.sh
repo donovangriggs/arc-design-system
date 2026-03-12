@@ -8,13 +8,11 @@ if [ ! -d "$SIBLING_DIR" ]; then
   git clone --depth 1 https://github.com/donovangriggs/arc-design-system-storybook.git "$SIBLING_DIR"
 fi
 
-cd "$SIBLING_DIR/packages/tokens"
-npm install --ignore-scripts
-npm run build 2>/dev/null || true
-
-cd ../core
-npm install --ignore-scripts
-npm run build 2>/dev/null || true
+# Build all packages from the Turborepo workspace root
+cd "$SIBLING_DIR"
+npm install -g pnpm
+pnpm install --frozen-lockfile
+pnpm build
 
 cd "$OLDPWD"
 
