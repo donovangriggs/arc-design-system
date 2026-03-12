@@ -22,7 +22,7 @@ jobs:
       - name: Checkout megastorybook (sibling packages)
         uses: actions/checkout@v4
         with:
-          repository: donovangriggs/megastorybook
+          repository: donovangriggs/arc-design-system-storybook
           path: megastorybook-tmp
 
       - name: Symlink sibling repo to expected path

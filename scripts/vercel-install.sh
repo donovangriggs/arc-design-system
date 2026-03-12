@@ -5,7 +5,7 @@ set -euo pipefail
 SIBLING_DIR="../megastorybook"
 
 if [ ! -d "$SIBLING_DIR" ]; then
-  git clone --depth 1 https://github.com/donovangriggs/megastorybook.git "$SIBLING_DIR"
+  git clone --depth 1 https://github.com/donovangriggs/arc-design-system-storybook.git "$SIBLING_DIR"
 fi
 
 cd "$SIBLING_DIR/packages/tokens"
