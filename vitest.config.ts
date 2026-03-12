@@ -19,9 +19,10 @@ export default defineConfig({
         'src/test/**',
         'src/data/snippets/**',
         'src/styles/**',
-        // Pure composition roots — no testable logic
+        // Pure composition roots and static presentation — no testable logic
         'src/App.tsx',
         'src/components/hero/HeroSection.tsx',
+        'src/components/hero/ArchitectureDiagram.tsx',
         'src/components/showcase/ComponentExplorer.tsx',
       ],
       thresholds: {
