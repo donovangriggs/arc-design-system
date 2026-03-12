@@ -52,8 +52,8 @@ Create a `.env` file in the project root with the following variables:
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `VITE_STORYBOOK_URL` | URL to the Arc Storybook instance | `http://localhost:6006` |
-| `VITE_GITHUB_URL` | GitHub repository URL | `https://github.com/donovangriggs/megastorybook` |
+| `VITE_STORYBOOK_URL` | URL to the Arc Storybook instance | `https://storybook.example.com` |
+| `VITE_GITHUB_URL` | GitHub repository URL | `https://github.com/your-org/your-repo` |
 
 **Note:** See `.env.example` for the template. These are client-side variables prefixed with `VITE_` and are safe to expose.
 
