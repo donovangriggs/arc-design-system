@@ -64,7 +64,7 @@ export function Header() {
         {/* Right */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <a
-            href={import.meta.env.VITE_STORYBOOK_URL}
+            href={import.meta.env.VITE_STORYBOOK_URL ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: 'var(--arc-color-neutral-500)', padding: 8, display: 'flex' }}
@@ -74,7 +74,7 @@ export function Header() {
             <BookOpen size={20} />
           </a>
           <a
-            href={import.meta.env.VITE_GITHUB_URL}
+            href={import.meta.env.VITE_GITHUB_URL ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: 'var(--arc-color-neutral-500)', padding: 8, display: 'flex' }}
