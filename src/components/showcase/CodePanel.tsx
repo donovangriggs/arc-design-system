@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { codeToHtml } from 'shiki';
+import DOMPurify from 'dompurify';
 import { Check, Clipboard } from 'lucide-react';
 import { useFramework } from '@/hooks/useFramework';
 import { FRAMEWORK_LANGS, type FrameworkSnippets } from '@/types';
@@ -12,6 +13,7 @@ export function CodePanel({ snippets }: CodePanelProps) {
   const { framework } = useFramework();
   const [html, setHtml] = useState('');
   const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const code = snippets[framework];
@@ -23,9 +25,17 @@ export function CodePanel({ snippets }: CodePanelProps) {
       lang,
       theme: 'one-dark-pro',
     }).then((result) => {
-      if (!cancelled) setHtml(result);
+      if (!cancelled) setHtml(DOMPurify.sanitize(result, { FORCE_BODY: true }));
     }).catch(() => {
-      if (!cancelled) setHtml(`<pre style="padding:16px;margin:0"><code>${code.replace(/</g, '&lt;')}</code></pre>`);
+      if (!cancelled) {
+        const escaped = code
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+        setHtml(`<pre style="padding:16px;margin:0"><code>${escaped}</code></pre>`);
+      }
     });
     return () => { cancelled = true; };
   }, [code, lang]);
@@ -37,7 +47,9 @@ export function CodePanel({ snippets }: CodePanelProps) {
       clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard API unavailable or denied
+      setCopyFailed(true);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setCopyFailed(false), 2000);
     }
   };
 
@@ -68,6 +80,7 @@ export function CodePanel({ snippets }: CodePanelProps) {
         </span>
         <button
           type="button"
+          aria-label={copied ? 'Copied to clipboard' : copyFailed ? 'Copy failed' : `Copy ${lang} snippet`}
           onClick={handleCopy}
           style={{
             display: 'flex',
@@ -76,15 +89,15 @@ export function CodePanel({ snippets }: CodePanelProps) {
             padding: '4px 8px',
             borderRadius: 6,
             border: 'none',
-            background: copied ? 'rgba(74,222,128,0.15)' : 'rgba(255,255,255,0.05)',
-            color: copied ? '#4ade80' : '#abb2bf',
+            background: copied ? 'rgba(74,222,128,0.15)' : copyFailed ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.05)',
+            color: copied ? '#4ade80' : copyFailed ? '#ef4444' : '#abb2bf',
             cursor: 'pointer',
             fontSize: 12,
             transition: 'all 150ms',
           }}
         >
-          {copied ? <Check size={14} /> : <Clipboard size={14} />}
-          {copied ? 'Copied!' : 'Copy'}
+          {copied ? <Check size={14} aria-hidden="true" /> : <Clipboard size={14} aria-hidden="true" />}
+          {copied ? 'Copied!' : copyFailed ? 'Failed' : 'Copy'}
         </button>
       </div>
 

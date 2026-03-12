@@ -22,7 +22,7 @@ interface FrameworkDef {
   readonly angle: number;
 }
 
-export const DIAGRAM_FRAMEWORKS: readonly FrameworkDef[] = [
+const DIAGRAM_FRAMEWORKS: readonly FrameworkDef[] = [
   { name: 'React', color: '#61DAFB', angle: 315 },
   { name: 'Vue', color: '#42B883', angle: 45 },
   { name: 'Angular', color: '#DD0031', angle: 225 },
@@ -196,7 +196,6 @@ const PARTICLES: readonly ParticleData[] = DIAGRAM_FRAMEWORKS.flatMap((fw, idx) 
 );
 
 export function ArchitectureDiagram() {
-
   return (
     <div
       className="relative w-full max-w-3xl mx-auto h-[320px] rounded-2xl overflow-hidden"
