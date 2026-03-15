@@ -5,7 +5,7 @@ import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
 import { App } from './App';
 import './styles/globals.css';
 
-defineCustomElements();
+defineCustomElements(window, { resourcesUrl: '/stencil-esm/' });
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Root element #root not found in document.');
